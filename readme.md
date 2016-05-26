@@ -160,7 +160,8 @@ Adding messages to queue:
 	$options = array (
 		'connection_name' => 'connection_name_config_file',
 		'exchange' => 'exchange_name',
-		'vhost' => 'vhost'
+		'vhost' => 'vhost',
+		'type' => 'type_name',
 	);	
 	
     Tail::add('queue-name', 'message', $options);
