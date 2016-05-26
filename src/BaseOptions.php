@@ -16,7 +16,7 @@ class BaseOptions {
      *
      * @var array
      */
-    protected $allowedOptions = array('exchange', 'vhost', 'connection_name', 'queue_name');
+    protected $allowedOptions = array('exchange', 'vhost', 'connection_name', 'queue_name', 'type');
 
     /**
      * Config repository dependency
