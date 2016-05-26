@@ -1,5 +1,5 @@
 {
-    "name": "mookofe/tail",
+    "name": "mpsaravanan/tail",
     "description": "RabbitMQ and PHP client for Laravel that allows you to add and listen queues messages just simple",
     "keywords": ["laravel5", "laravel", "rabbitmq", "queue", "package", "client", "Victor Cruz", "mookofe" ],
     "license": "MIT",
