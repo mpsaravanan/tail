@@ -32,6 +32,11 @@ class BaseOptions {
      */
     public $exchange;
     
+    /**
+     * Type name on RabbitMQ Server (direct,fanout,topic)
+     *
+     * @var string
+     */
     public $type;
     
     /**
