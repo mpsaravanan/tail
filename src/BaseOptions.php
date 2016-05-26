@@ -32,6 +32,8 @@ class BaseOptions {
      */
     public $exchange;
     
+    public $type;
+    
     /**
      * Virtual host name on RabbitMQ Server
      *
@@ -124,6 +126,8 @@ class BaseOptions {
             $connectionOptions['vhost'] = $this->vhost;
         if ($this->exchange)
             $connectionOptions['exchange'] = $this->exchange;
+        if ($this->type)
+            $connectionOptions['type'] = $this->type;
             
         //Queue specific options
         $connectionOptions['queue_name'] = $this->queue_name;
