@@ -1,4 +1,4 @@
-mookofe/tail
+mpsaravanan/tail
 =========
 
 RabbitMQ and PHP client for Laravel and Lumen that allows you to add and listen queues messages just simple.
@@ -33,7 +33,7 @@ Installation
 Open your composer.json file and add the following to the require array: 
 
 ```js
-"mookofe/tail": "1.*"
+"mpsaravanan/tail": "dev-master"
 ```
 
 **Install dependencies**
