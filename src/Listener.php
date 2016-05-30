@@ -92,8 +92,8 @@ class Listener extends BaseOptions {
 
         $listenerObject = $this;
         //Check Queue Empty Or Not
-        $message=$connection->channel->basic_get($this->queue_name, $no_ack = false, $ticket = null);
         if(!empty($listenerObject->empty_check)){
+            $message=$connection->channel->basic_get($this->queue_name, $no_ack = false, $ticket = null);
             if(empty($message)){
                 echo 0;
                 exit();
