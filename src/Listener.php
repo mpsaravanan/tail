@@ -34,6 +34,14 @@ class Listener extends BaseOptions {
      * @var int
      */
     public $empty_queue_timeout = 0;
+    
+     /**
+     * Check the queue is empty
+     * Default :0 not check queue empty or not
+     * 1 to check Empty 
+     * @var int
+     */
+    public $empty_check = 0;
 
 
    /**
@@ -47,7 +55,7 @@ class Listener extends BaseOptions {
     {
         parent::__construct($config);
 
-        $this->allowedOptions = array_merge($this->allowedOptions, array('message_limit', 'time', 'empty_queue_timeout'));
+        $this->allowedOptions = array_merge($this->allowedOptions, array('message_limit', 'time', 'empty_queue_timeout', 'empty_check'));
 
         if ($options)
             $this->setOptions($options);
@@ -76,6 +84,18 @@ class Listener extends BaseOptions {
         $connection->open();
 
         $listenerObject = $this;
+        //Check Queue Empty Or Not
+        $message=$connection->channel->basic_get($this->queue_name, $no_ack = false, $ticket = null);
+        if(!empty($listenerObject->empty_check)){
+            if(empty($message)){
+                echo 0;
+                exit();
+            }
+            else{
+                echo 1;
+                exit();
+            }
+        }
 
         $connection->channel->basic_consume($this->queue_name, $connection->consumer_tag, false, false, false, false, function ($msg) use ($closure, $listenerObject) {
 
