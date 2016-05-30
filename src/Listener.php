@@ -42,7 +42,14 @@ class Listener extends BaseOptions {
      * @var int
      */
     public $empty_check = 0;
-
+    
+    /**
+     * Stop Queue Consume
+     * Default :0 continue
+     * 1 to stop 
+     * @var int
+     */
+    public $stop_queue = 0;
 
    /**
      * Listener constructor
@@ -55,7 +62,7 @@ class Listener extends BaseOptions {
     {
         parent::__construct($config);
 
-        $this->allowedOptions = array_merge($this->allowedOptions, array('message_limit', 'time', 'empty_queue_timeout', 'empty_check'));
+        $this->allowedOptions = array_merge($this->allowedOptions, array('message_limit', 'time', 'empty_queue_timeout', 'empty_check', 'stop_queue'));
 
         if ($options)
             $this->setOptions($options);
@@ -112,6 +119,11 @@ class Listener extends BaseOptions {
 
             //Update counters
             $GLOBALS['messages_proccesed']++;
+            
+            //Stop Consumer..
+            if(!empty($listenerObject->stop_queue)){
+                $msg->delivery_info['channel']->basic_cancel($msg->delivery_info['consumer_tag']);
+            }
 
             //Check if necesary to close consumer      
             if ($listenerObject->message_limit && $GLOBALS['messages_proccesed'] >= $listenerObject->message_limit)
