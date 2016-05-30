@@ -121,11 +121,10 @@ class Listener extends BaseOptions {
             $GLOBALS['messages_proccesed']++;
             
             //Stop Consumer..
-            /*if(!empty($listenerObject->stop_queue)){
+            if(!empty($listenerObject->stop_queue)){
                 $msg->delivery_info['channel']->basic_cancel($msg->delivery_info['consumer_tag']);
             }
-            */
-
+            
             //Check if necesary to close consumer      
             if ($listenerObject->message_limit && $GLOBALS['messages_proccesed'] >= $listenerObject->message_limit)
                 $msg->delivery_info['channel']->basic_cancel($msg->delivery_info['consumer_tag']);
