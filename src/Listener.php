@@ -123,9 +123,6 @@ class Listener extends BaseOptions {
             //Stop Consumer..
             if(!empty($listenerObject->stop_queue)){
                 $msg->delivery_info['channel']->basic_cancel($msg->delivery_info['consumer_tag']);
-                register_shutdown_function(function ($connection) {
-                    $connection->close();
-                }, $connection);
             }
             
             //Check if necesary to close consumer      
